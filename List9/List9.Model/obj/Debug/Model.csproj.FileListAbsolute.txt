@@ -1,0 +1,10 @@
+D:\VSProjects\todo9\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\VSProjects\todo9\Model\bin\Debug\Model.dll.config
+D:\VSProjects\todo9\Model\bin\Debug\Model.dll
+D:\VSProjects\todo9\Model\bin\Debug\Model.pdb
+D:\VSProjects\todo9\Model\bin\Debug\EntityFramework.dll
+D:\VSProjects\todo9\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\VSProjects\todo9\Model\bin\Debug\EntityFramework.xml
+D:\VSProjects\todo9\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\VSProjects\todo9\Model\obj\Debug\Model.dll
+D:\VSProjects\todo9\Model\obj\Debug\Model.pdb

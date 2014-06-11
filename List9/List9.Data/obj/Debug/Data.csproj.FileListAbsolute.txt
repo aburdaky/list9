@@ -1,0 +1,15 @@
+D:\VSProjects\todo9\Project1\Data\bin\Debug\Data.dll.config
+D:\VSProjects\todo9\Project1\Data\bin\Debug\Data.dll
+D:\VSProjects\todo9\Project1\Data\bin\Debug\Data.pdb
+D:\VSProjects\todo9\Project1\Data\bin\Debug\EntityFramework.dll
+D:\VSProjects\todo9\Project1\Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\VSProjects\todo9\Project1\Data\bin\Debug\Model.dll
+D:\VSProjects\todo9\Project1\Data\bin\Debug\Model.pdb
+D:\VSProjects\todo9\Project1\Data\bin\Debug\EntityFramework.xml
+D:\VSProjects\todo9\Project1\Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.csprojResolveAssemblyReference.cache
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.dll
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.pdb
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.Migrations.initial.resources
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.csproj.GenerateResource.Cache
+D:\VSProjects\todo9\Project1\Data\obj\Debug\Data.Migrations.fix.resources

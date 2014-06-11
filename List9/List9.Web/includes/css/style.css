@@ -1,0 +1,13 @@
+﻿body {
+}
+.panel{border:solid 1px black;}
+td {padding-left: 10px;
+       padding-right: 10px;
+}
+th {padding-left: 10px;
+       padding-right: 10px;
+}
+.form-control{ padding-top: 10px;
+       padding-bottom: 10px;
+
+}

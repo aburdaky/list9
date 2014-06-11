@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="List9">
+<head>
+    <title>
+        List9
+    </title>
+    <link href="includes/bundles/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="includes/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" ng-controller="MasterController">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel" id="quickFilterBox">
+                    <a>Today</a>
+                    <a>Next 7 Days</a>
+                    <a>This Month</a>
+
+                </div>
+                <div id="filterList">
+                    <div class=" btn-group" >
+                        <button class="btn btn-info" ng-click="(viewMode='Projects')">Projects</button>
+                        <button class="btn btn-info" ng-click="(viewMode='Users')">Users</button>
+                        <button class="btn btn-info" ng-click="(viewMode='Categories')">Categories</button>
+                    </div>
+                    <div class="panel" id="projectsList" ng-controller="ProjectsController" ng-show="(viewMode=='Projects')">
+                        <div class="panel-heading">
+                            <h3>Project</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat="p in projects">{{p.Name}} <span class="badge bg-info pull-right">{{p.Tasks.length}} </span></li>
+                            </ul>
+                            <div ng-hide="(editMode==true)">
+                                <button class="btn btn-info" ng-click="editMode=true">
+                                    Add New
+                                </button>
+                            </div>
+                            <div ng-show="(editMode==true)">
+                                <input type="text" ng-model="selectedProject.Name" id="addNewProject">
+                                <br />
+                                <button class="btn btn-success" ng-click="save()">Save</button>
+                                <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="panel" id="userList" ng-controller="UserController" ng-show="(viewMode=='Users')">
+                        <div class="panel-heading">
+                            <h3>User</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div ng-repeat="u in users">{{u.Name}}<span class="badge bg-info  pull-right">{{u.Tasks.length}} </span></div>
+                            <div ng-hide="(editMode==true)">
+                                <button class="btn btn-info" ng-click="editMode=true">
+                                    Add New
+                                </button>
+                            </div>
+                            <div ng-show="(editMode==true)">
+                                <input type="text" ng-model="selectedUser.Name" id="addNewProject">
+                                <br />
+                                <button class="btn btn-success" ng-click="save()">Save</button>
+                                <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
+                            </div>
+                        </div>
+
+                        </div>
+                    <div class="panel" id="taskCategoryList" ng-controller="TaskCategoryController" ng-show="(viewMode=='Categories')">
+                            <div class="panel-heading">
+                                <h3>Category</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div ng-repeat="tc in taskcategories">{{tc.Name}}<span class="badge bg-info  pull-right">{{tc.Tasks.length}} </span></div>
+                                <div ng-hide="(editMode==true)">
+                                    <button class="btn btn-info" ng-click="editMode=true">
+                                        Add New
+                                    </button>
+                                </div>
+                                <div ng-show="(editMode==true)">
+                                    <input type="text" ng-model="selectedTaskCategory.Name" id="addNewProject">
+                                    <br />
+                                    <button class="btn btn-success" ng-click="save()">Save</button>
+                                    <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div ng-controller="TaskController">
+                    <div class="panel col-md-9 pull-right">
+                         <table class="table">
+                            <tr>
+                                <th>Done?</th>
+                                <th>Task</th>
+                                <th>Description</th>
+                                <th>Date Due</th>
+                                <th>Project</th>
+                                <th>User</th>
+                                <th>Cateory</th>
+                            </tr>
+                            <tr ng-repeat="t in tasks | orderBy:t.DateDue:reverse">
+                                <td><input type="checkbox" ng-model="t.Done" /></td>
+                                <td>{{t.Name}}</td>
+                                <td>{{t.Notes}}</td>
+                                <td>{{t.DateDue| date:"dd/MM/yyyy"}}
+                                <td>{{t.Projects.Name}}</td>
+                                <td>{{t.Users.Name}}</td>
+                                <td>{{t.TaskCategories.Name}}</td>
+                            </tr>
+
+                        </table>
+                        <div ng-hide="(editMode==true)">
+                            <button class="btn btn-info" ng-click="editMode=true">
+                                Add New
+                            </button>
+                        </div>
+                        <div ng-show="(editMode==true)">
+                            <form class="form">
+                                <div class="form-group">
+                                    <label>Task Name:</label>
+                                    <input class="form-control" type="text" ng-model="selectedTask.Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Task Description:</label>
+                                    <input class="form-control" type="text" ng-model="selectedTask.Notes">
+                                </div>
+                                <div class="form-group">
+                                    <label>Task Due Date:</label>
+                                    <input class="form-control" type="date" ng-model="selectedTask.DateDue">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-group"> Project:</label>
+                                    <select class="form-control" name="Projects" ng-model="selectedTask.ProjectId"  ng-options="p.Id as p.Name for p in projects"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group">User:</label>
+                                    <select class="form-control" ng-model="selectedTask.UserId" ng-options="u.Id as u.Name for u in users"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-group"> Category:</label>
+                                    <select class="form-control" ng-model="selectedTask.TaskCategoryId" ng-options="tc.Id as tc.Name for tc in taskcategories"></select>
+                                </div>
+
+                            </form>
+                            <br />
+                            <button class="btn btn-success" ng-click="save()">Save</button>
+                            <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="includes/bundles/jQuery/jquery-1.9.0.js"></script>
+        <script src="includes/bundles/angular/angular-loader.js"></script>
+        <script src="includes/bundles/angular/angular.js"></script>
+        <script src="includes/bundles/angular/angular-resource.js"></script>
+        <script src="includes/bundles/angular/angular-route.js"></script>
+        <script src="WebApp/app.js"></script>
+        <script src="WebApp/core.js"></script>
+        <script src="WebApp/MasterController.js"></script>
+        <script src="WebApp/ProjectsController.js"></script>
+        <script src="WebApp/TaskCategoryContoller.js"></script>
+        <script src="WebApp/UserController.js"></script>
+        <script src="WebApp/TaksController.js"></script>
+</body>
+</html>

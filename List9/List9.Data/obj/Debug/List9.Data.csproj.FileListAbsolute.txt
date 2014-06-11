@@ -1,0 +1,17 @@
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\List9.Data.csprojResolveAssemblyReference.cache
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.Migrations.initial.resources
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.Migrations.fix.resources
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\List9.Data.csproj.GenerateResource.Cache
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.dll
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.pdb
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\Data.dll.config
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\Data.dll
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\Data.pdb
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\EntityFramework.dll
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\Model.dll
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\Model.pdb
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\EntityFramework.xml
+D:\VSProjects\List9\List9\List9.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.Migrations.AuditingFields.resources
+D:\VSProjects\List9\List9\List9.Data\obj\Debug\Data.Migrations.icllectionfix.resources
