@@ -10,112 +10,76 @@
 <body>
     <div class="container" ng-controller="MasterController">
         <div class="row">
-            <div class="col-md-3">
-                <div class="panel" id="quickFilterBox">
+            <div class="col-md-4">
+                <div id="logo">
+                    list9
+                </div>
+                <div id="timeFilters">
+                    <a>All</a>
                     <a>Today</a>
                     <a>Next 7 Days</a>
                     <a>This Month</a>
-
                 </div>
-                <div id="filterList">
-                    <div class=" btn-group" >
-                        <button class="btn btn-info" ng-click="(viewMode='Projects')">Projects</button>
-                        <button class="btn btn-info" ng-click="(viewMode='Users')">Users</button>
-                        <button class="btn btn-info" ng-click="(viewMode='Categories')">Categories</button>
-                    </div>
-                    <div class="panel" id="projectsList" ng-controller="ProjectsController" ng-show="(viewMode=='Projects')">
-                        <div class="panel-heading">
-                            <h3>Project</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-group">
-                                <li class="list-group-item" ng-repeat="p in projects">{{p.Name}} <span class="badge bg-info pull-right">{{p.Tasks.length}} </span></li>
-                            </ul>
-                            <div ng-hide="(editMode==true)">
-                                <button class="btn btn-info" ng-click="editMode=true">
-                                    Add New
-                                </button>
-                            </div>
-                            <div ng-show="(editMode==true)">
-                                <input type="text" ng-model="selectedProject.Name" id="addNewProject">
-                                <br />
-                                <button class="btn btn-success" ng-click="save()">Save</button>
-                                <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
-                            </div>
-
+                <div id="groups">
+                    <ul class="nav nav-tabs" id="groupTabs">
+                        <li ng-class="(viewMode=='Projects')?'active':''"><a href="" ng-click="(viewMode='Projects')">Projects</a></li>
+                        <li ng-class="(viewMode=='Users')?'active':''"><a href="" ng-click="(viewMode='Users')">Users</a></li>
+                        <li ng-class="(viewMode=='Categories')?'active':''"><a href="" ng-click="(viewMode='Categories')">Categories</a></li>
+                    </ul>
+                    <div id="projects" class="group" ng-controller="ProjectsController" ng-show="(viewMode=='Projects')">
+                        <ul class="group-items">
+                            <li ng-repeat="p in projects">{{p.Name}} <span class="badge" ng-hide="(p.Tasks.length==0)">{{p.Tasks.length}}</span></li>
+                        </ul>
+                        
+                        <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
+                        
+                        <div ng-show="(editMode==true)" class="add-group-item">
+                            <input type="text" ng-model="selectedProject.Name" id="addNewProject" placeholder="Enter Project Name">
+                            <br />
+                            <button class="btn btn-sm" ng-click="save()">Save</button>
+                            <button class="btn btn-sm" ng-click="editMode=false">Cancel</button>
                         </div>
                     </div>
-                    <div class="panel" id="userList" ng-controller="UserController" ng-show="(viewMode=='Users')">
-                        <div class="panel-heading">
-                            <h3>User</h3>
+                    <div id="users" class="group" ng-controller="UserController" ng-show="(viewMode=='Users')">
+                        <ul class="group-items">
+                            <li ng-repeat="u in users">{{u.Name}}<span class="badge" ng-hide="(u.Tasks.length==0)">{{u.Tasks.length}} </span></li>
+                        </ul>
+                        
+                        <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
+                        
+                        <div ng-show="(editMode==true)" class="add-group-item">
+                            <input type="text" ng-model="selectedUser.Name" id="addNewProject">
+                            <br />
+                            <button class="btn btn-success" ng-click="save()">Save</button>
+                            <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
                         </div>
-                        <div class="panel-body">
-                            <div ng-repeat="u in users">{{u.Name}}<span class="badge bg-info  pull-right">{{u.Tasks.length}} </span></div>
-                            <div ng-hide="(editMode==true)">
-                                <button class="btn btn-info" ng-click="editMode=true">
-                                    Add New
-                                </button>
-                            </div>
-                            <div ng-show="(editMode==true)">
-                                <input type="text" ng-model="selectedUser.Name" id="addNewProject">
-                                <br />
-                                <button class="btn btn-success" ng-click="save()">Save</button>
-                                <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div id="categories" class="group" ng-controller="TaskCategoryController" ng-show="(viewMode=='Categories')">
+                        <ul class="group-items">
+                            <li ng-repeat="tc in taskcategories">{{tc.Name}}<span class="badge" ng-hide="(tc.Tasks.length==0)">{{tc.Tasks.length}} </span></li>
+                        </ul>
 
-                        </div>
-                    <div class="panel" id="taskCategoryList" ng-controller="TaskCategoryController" ng-show="(viewMode=='Categories')">
-                            <div class="panel-heading">
-                                <h3>Category</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div ng-repeat="tc in taskcategories">{{tc.Name}}<span class="badge bg-info  pull-right">{{tc.Tasks.length}} </span></div>
-                                <div ng-hide="(editMode==true)">
-                                    <button class="btn btn-info" ng-click="editMode=true">
-                                        Add New
-                                    </button>
-                                </div>
-                                <div ng-show="(editMode==true)">
-                                    <input type="text" ng-model="selectedTaskCategory.Name" id="addNewProject">
-                                    <br />
-                                    <button class="btn btn-success" ng-click="save()">Save</button>
-                                    <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
-                                </div>
+                        <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
 
-
-                            </div>
+                        <div ng-show="(editMode==true)" class="add-group-item">
+                            <input type="text" ng-model="selectedTaskCategory.Name" id="addNewProject">
+                            <br />
+                            <button class="btn btn-success" ng-click="save()">Save</button>
+                            <button class="btn btn-danger" ng-click="editMode=false">Cancel</button>
                         </div>
                     </div>
                 </div>
-               <div ng-controller="TaskController">
-                    <div class="panel col-md-9 pull-right">
-                         <table class="table">
-                            <tr>
-                                <th>Done?</th>
-                                <th>Task</th>
-                                <th>Description</th>
-                                <th>Date Due</th>
-                                <th>Project</th>
-                                <th>User</th>
-                                <th>Cateory</th>
-                            </tr>
-                            <tr ng-repeat="t in tasks | orderBy:t.DateDue:reverse">
-                                <td><input type="checkbox" ng-model="t.Done" /></td>
-                                <td>{{t.Name}}</td>
-                                <td>{{t.Notes}}</td>
-                                <td>{{t.DateDue| date:"dd/MM/yyyy"}}
-                                <td>{{t.Projects.Name}}</td>
-                                <td>{{t.Users.Name}}</td>
-                                <td>{{t.TaskCategories.Name}}</td>
-                            </tr>
-
-                        </table>
-                        <div ng-hide="(editMode==true)">
-                            <button class="btn btn-info" ng-click="editMode=true">
-                                Add New
-                            </button>
+            </div>
+            <div class="col-md-8">
+                <div id="tasks-wrapper">
+                    <div id="search"></div>
+                    <div id="tasks" ng-controller="TaskController">
+                        <div class="task" ng-repeat="t in tasks | orderBy:t.DateDue:reverse">
+                            <input id="checkbox{{t.Id}}" class="css-checkbox" type="checkbox" ng-checked="t.Done" />
+                            <label for="checkbox{{t.Id}}" name="checkboxLbl{{t.Id}}" class="css-label"></label>
+                            <span class="task-name">{{t.Name}}</span>
                         </div>
+                        <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
                         <div ng-show="(editMode==true)">
                             <form class="form">
                                 <div class="form-group">
@@ -153,6 +117,10 @@
                 </div>
             </div>
         </div>
+        <div class="row" id="e9ine">
+            <img src="includes/images/e9ine-logo.png" alt="e9ine" />
+            www.e9ine.com
+        </div>
         <script src="includes/bundles/jQuery/jquery-1.9.0.js"></script>
         <script src="includes/bundles/angular/angular-loader.js"></script>
         <script src="includes/bundles/angular/angular.js"></script>
@@ -165,5 +133,5 @@
         <script src="WebApp/TaskCategoryContoller.js"></script>
         <script src="WebApp/UserController.js"></script>
         <script src="WebApp/TaksController.js"></script>
-</body>
-</html>
+    </body>
+    </html>

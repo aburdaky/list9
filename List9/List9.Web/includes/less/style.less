@@ -1,0 +1,200 @@
+@import 'variables.less';
+@import 'mixins.less';
+@import 'common.less';
+
+@import url(http://fonts.googleapis.com/css?family=Ek+Mukta:200,400,600|Satisfy|Crimson+Text:400,600);
+
+
+body {
+	background-image: url('/includes/images/background.jpg');
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	color: #000;
+	.container {
+		width: 800px;
+	}
+}
+
+
+#logo {
+	font-family: 'Satisfy', cursive;
+	font-size: 32px;
+	margin: 10px 0 30px 0;
+	color: #fff;
+
+}
+
+#timeFilters {
+	margin: 0 0 20px 0;
+	a {
+		display: block;
+		font-size: 16px;
+		margin: 10px 0;
+		font-weight: 700;
+		color: #f5f5f5;
+		border-bottom: 1px dotted #ddd;
+		padding-bottom: 5px;
+		color: #000;
+	}
+}
+
+#groups {
+	ul.group-items {
+		list-style: none;
+		padding-left: 0;
+		li {
+			paddin:0;
+			margin: 10px 0;
+			font-size: 14px;
+			
+			.badge {
+				background-color: #D17C9D;
+				color:#fff;
+				width: 20px;
+				padding: 0px !important;
+				height: 20px;
+				line-height: 22px;
+				float: right;
+			}
+		}
+	}
+	.group {
+		padding:10px;
+		background-color: rgba(255,255,255,0.5);
+		.add-group-item {
+			input[type="text"]{
+				width: 100% !important;
+				margin: 10px 0;
+				background: transparent;
+				border:0;
+			}
+		}
+		a.add {
+			color: #D17C9D;
+			font-weight: 600;
+		}
+	}
+	ul.nav.nav-tabs {
+		border-bottom:0 !important;
+		li {
+			border: 0;
+			a {
+				border: 0;
+				padding: 5px 10px;
+				color: #fff;
+				&:hover {
+					background:none;
+					color: #fff;
+				}
+			}
+			&.active{
+				a {
+					background-color: rgba(255,255,255,0.5);
+					color: #3d3d3d;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+.btn {
+	.border-radius(3px);
+	background: #D17C9D;
+	color: #fff;
+	font-size: 16px;
+	&.btn-sm {
+		padding: 3px 5px 0;
+	}
+}
+
+#tasks-wrapper {
+	background-color: rgba(255,255,255,0.7);
+	padding: 30px;
+	min-height: 550px;
+	.task {
+		padding: 0 0 10px 0;
+		margin-bottom: 5px;
+		text-transform: capitalize;
+	}
+	a.add {
+		color: #2768A0;
+		font-weight: 600;
+	}
+}
+
+table {
+	border-bottom:1px solid #ddd;
+	thead {
+		.border-radius(5px 5px 0 0);
+		th {
+			background-color: #3d3d3d;
+			color: #fff;
+			border-bottom:0 !important;
+			border-color:#000;
+			padding: 5px 5px 2px !important;
+			&:first-child {
+				.border-radius(5px 0 0 0);
+			}
+			&:last-child {
+				.border-radius(0 5px 0 0);
+			}
+		}
+	}
+	tbody {
+		td {
+			border-top:0 !important;
+			border-bottom: 1px dotted #ccc !important;
+			&:last-child {
+			}
+		}
+	}
+}
+
+#e9ine {
+	text-align: center;
+	font-weight: 700;
+	margin: 20px 0;
+	font-size: 14px;
+	img {
+		.border-radius(25px);
+		display: block;
+		margin: 20px auto 10px;
+	}
+}
+
+
+/**** Checkboxes ***/
+input[type=checkbox].css-checkbox {
+	position: absolute; 
+	overflow: hidden; 
+	clip: rect(0 0 0 0); 
+	height:1px; 
+	width:1px; 
+	margin:-1px; 
+	padding:0;
+	border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+	padding-left:20px;
+	height:15px; 
+	display:inline-block;
+	line-height:15px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:15px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+	background-position: 0 -15px;
+}
+
+.css-label{ background-image:url(http://csscheckbox.com/checkboxes/lite-gray-check.png); }
