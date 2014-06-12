@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="includes\css\style.css" />
+    <Content Include="includes\css\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="index.html" />
     <Content Include="WebApp\app.js" />
     <Content Include="WebApp\TaksController.js" />

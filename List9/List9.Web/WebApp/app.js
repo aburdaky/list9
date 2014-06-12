@@ -11,7 +11,7 @@
     ]);
 
     module.config(['$routeProvider', 'ApiProvider', configFunction]);
-
+    
     function configFunction($routeProvider, ApiProvider) {
         $routeProvider
             .when('/index', {
@@ -23,5 +23,10 @@
             });
 
         ApiProvider.setEndpoint("http://list9.testpad.e9server.com/api");
+        //ApiProvider.setEndpoint("http://localhost:56367/api");
     }
+
+   
+
+
 }(window, angular));

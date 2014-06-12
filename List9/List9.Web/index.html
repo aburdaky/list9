@@ -15,10 +15,10 @@
                     list9
                 </div>
                 <div id="timeFilters">
-                    <a>All</a>
-                    <a>Today</a>
-                    <a>Next 7 Days</a>
-                    <a>This Month</a>
+                    <a ng-click="clearfilters('All')">All</a>
+                    <a ng-click="filterTasksByDate('Today')">Today</a>
+                    <a ng-click="filterTasksByDate('Next 7 Days')">Next 7 Days</a>
+                    <a ng-click="filterTasksByDate('This Month')">This Month</a>
                 </div>
                 <div id="groups">
                     <ul class="nav nav-tabs" id="groupTabs">
@@ -27,12 +27,16 @@
                         <li ng-class="(viewMode=='Categories')?'active':''"><a href="" ng-click="(viewMode='Categories')">Categories</a></li>
                     </ul>
                     <div id="projects" class="group" ng-controller="ProjectsController" ng-show="(viewMode=='Projects')">
-                        <ul class="group-items">
-                            <li ng-repeat="p in projects">{{p.Name}} <span class="badge" ng-hide="(p.Tasks.length==0)">{{p.Tasks.length}}</span></li>
-                        </ul>
-                        
+                        <div class="group-items">
+                            <div ng-repeat-start="p in projects" ng-click="projectClicked(p)" ng-dblclick="editProject=true" ng-hide="(editProject==true)">{{p.Name}} <span class="badge" ng-hide="(p.Tasks.length==0)">{{p.Tasks.length}}</span></div>
+                            <div ng-repeat-end ng-show="(editProject==true)">
+                                <input type="text" ng-model="p.Name" ng-blur="editProject = false" ng-keypress="saveEdit(p,$event)" />
+                                
+                            </div>
+                        </div>
+
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
-                        
+
                         <div ng-show="(editMode==true)" class="add-group-item">
                             <input type="text" ng-model="selectedProject.Name" id="addNewProject" placeholder="Enter Project Name">
                             <br />
@@ -41,12 +45,16 @@
                         </div>
                     </div>
                     <div id="users" class="group" ng-controller="UserController" ng-show="(viewMode=='Users')">
-                        <ul class="group-items">
-                            <li ng-repeat="u in users">{{u.Name}}<span class="badge" ng-hide="(u.Tasks.length==0)">{{u.Tasks.length}} </span></li>
-                        </ul>
-                        
+                        <div class="group-items">
+                            <div ng-repeat-start="u in users" ng-click="userClicked(u)" ng-dblclick="edituser=true" ng-hide="(edituser==true)">{{u.Name}} <span class="badge" ng-hide="(u.Tasks.length==0)">{{u.Tasks.length}}</span></div>
+                            <div ng-repeat-end ng-show="(edituser==true)">
+                                <input type="text" ng-model="u.Name" ng-blur="editUser = false" ng-keypress="saveEdit(u,$event)" />
+                                
+                            </div>
+                        </div>
+
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
-                        
+
                         <div ng-show="(editMode==true)" class="add-group-item">
                             <input type="text" ng-model="selectedUser.Name" id="addNewProject">
                             <br />
@@ -55,10 +63,13 @@
                         </div>
                     </div>
                     <div id="categories" class="group" ng-controller="TaskCategoryController" ng-show="(viewMode=='Categories')">
-                        <ul class="group-items">
-                            <li ng-repeat="tc in taskcategories">{{tc.Name}}<span class="badge" ng-hide="(tc.Tasks.length==0)">{{tc.Tasks.length}} </span></li>
-                        </ul>
-
+                        <div class="group-items">
+                            <div ng-repeat-start="c in taskcategories" ng-click="categoryClicked(c)" ng-dblclick="editcategory=true" ng-hide="(editcategory==true)">{{c.Name}} <span class="badge" ng-hide="(c.Tasks.length==0)">{{c.Tasks.length}}</span></div>
+                            <div ng-repeat-end ng-show="(editcategory==true)">
+                                <input type="text" ng-model="c.Name" ng-blur="editcategory = false" ng-keypress="saveEdit(c,$event)" />
+                                
+                            </div>
+                        </div>
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
 
                         <div ng-show="(editMode==true)" class="add-group-item">
@@ -72,13 +83,21 @@
             </div>
             <div class="col-md-8">
                 <div id="tasks-wrapper">
-                    <div id="search"></div>
+                    <div id="search"><input ng-model="searchText" type="text" /></div>
                     <div id="tasks" ng-controller="TaskController">
-                        <div class="task" ng-repeat="t in tasks | orderBy:t.DateDue:reverse">
-                            <input id="checkbox{{t.Id}}" class="css-checkbox" type="checkbox" ng-checked="t.Done" />
-                            <label for="checkbox{{t.Id}}" name="checkboxLbl{{t.Id}}" class="css-label"></label>
-                            <span class="task-name">{{t.Name}}</span>
-                        </div>
+                        <div id="filterHeading">{{filterHeading}}</div>
+                        <div class="task" ng-repeat="t in tasks| filter:searchText">
+                            <div ng-dblclick="editTask=true" ng-show="(editTask!=true)">
+                                <input id="checkbox{{t.Id}}" class="css-checkbox" type="checkbox" ng-checked="t.Done" />
+                                <label for="checkbox{{t.Id}}" name="checkboxLbl{{t.Id}}" class="css-label"></label>
+                                <span class="task-name" ngrightclick="deleteTask(t)">{{t.Name}} {{t.DateDue | date:'dd/MM'}}</span>
+                            </div>
+                                <div ng-show="(editTask==true)">
+                                    <input type="text" ng-model="t.Name" class="form-control" placeholder="{{t.Name}}" ng-blur="editTask = false" ng-keypress="saveEdit(t,$event)" />
+                                    <!--<br />
+                                    <button class="btn btn-sm btn-danger" ng-click="editTask=false">Cancel</button>-->
+                                </div>
+                            </div>
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
                         <div ng-show="(editMode==true)">
                             <form class="form">
@@ -97,7 +116,7 @@
 
                                 <div class="form-group">
                                     <label class="form-group"> Project:</label>
-                                    <select class="form-control" name="Projects" ng-model="selectedTask.ProjectId"  ng-options="p.Id as p.Name for p in projects"></select>
+                                    <select class="form-control" name="Projects" ng-model="selectedTask.ProjectId" ng-options="p.Id as p.Name for p in projects"></select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-group">User:</label>
@@ -117,21 +136,29 @@
                 </div>
             </div>
         </div>
-        <div class="row" id="e9ine">
-            <img src="includes/images/e9ine-logo.png" alt="e9ine" />
-            www.e9ine.com
-        </div>
-        <script src="includes/bundles/jQuery/jquery-1.9.0.js"></script>
-        <script src="includes/bundles/angular/angular-loader.js"></script>
-        <script src="includes/bundles/angular/angular.js"></script>
-        <script src="includes/bundles/angular/angular-resource.js"></script>
-        <script src="includes/bundles/angular/angular-route.js"></script>
-        <script src="WebApp/app.js"></script>
-        <script src="WebApp/core.js"></script>
-        <script src="WebApp/MasterController.js"></script>
-        <script src="WebApp/ProjectsController.js"></script>
-        <script src="WebApp/TaskCategoryContoller.js"></script>
-        <script src="WebApp/UserController.js"></script>
-        <script src="WebApp/TaksController.js"></script>
-    </body>
+    </div>
+    <div class="row" id="e9ine">
+        <img src="includes/images/e9ine-logo.png" alt="e9ine" />
+        www.e9ine.com
+    </div>
+    <script src="includes/bundles/jQuery/jquery-1.9.0.js"></script>
+    <script src="includes/bundles/angular/angular-loader.js"></script>
+    <script src="includes/bundles/angular/angular.js"></script>
+    <script src="includes/bundles/angular/angular-resource.js"></script>
+    <script src="includes/bundles/angular/angular-route.js"></script>
+
+    <script src="/includes/bundles/moment/moment.min.js"></script>
+    <script src="/includes/bundles/moment/moment.timezone.min.js"></script>
+    <script src="/includes/bundles/moment/moment.timezone.data.js"></script>
+
+    <script src="WebApp/app.js"></script>
+    <script src="WebApp/core.js"></script>
+    <script src="WebApp/MasterController.js"></script>
+    <script src="WebApp/ProjectsController.js"></script>
+    <script src="WebApp/TaskCategoryContoller.js"></script>
+    <script src="WebApp/UserController.js"></script>
+    <script src="WebApp/TaksController.js"></script>
+
+
+</body>
     </html>

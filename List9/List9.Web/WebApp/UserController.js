@@ -3,14 +3,18 @@
         'List9.Core'
     ]);
 
-    module.controller("UserController", ['$scope', 'Api', UserController]);
+    module.controller("UserController", ['$rootScope', '$scope', 'Api', UserController]);
 
-    function UserController($scope, Api) {
+    function UserController($rootScope,$scope, Api) {
 
         $scope.users = [];
 
         $scope.selectedUser = null;
+        $scope.userClicked = userClicked;
 
+        function userClicked(user) {
+            $rootScope.$broadcast('USER_SELECTED', user);
+        }
 
 
         fetchUser = function () {
@@ -18,7 +22,7 @@
             Api.User.query({ $expand: 'Tasks' }, function (data) {
                 $scope.users = data;
             }, {})
-        }
+        };
 
 
 
@@ -34,6 +38,21 @@
 
 
             }, function () { alert('Error Creating User') })
+        }
+
+        $scope.saveEdit = function (user, $event) {
+            var updateable = angular.copy(user);
+
+            if ($event.keyCode === 13) {
+                Api.User.update({ id: user.Id }, updateable, function () {
+                    alert('User Updated Sucessfully');
+                    fetchUser();
+                }, function () {
+                    alert('Error Editing User');
+                    fetchUser();
+                })
+            }
+
         }
     }
 

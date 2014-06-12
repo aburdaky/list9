@@ -3,14 +3,18 @@
         'List9.Core'
     ]);
 
-    module.controller("TaskCategoryController", ['$scope', 'Api', TaskCategoryController]);
+    module.controller("TaskCategoryController", ['$rootScope', '$scope', 'Api', TaskCategoryController]);
 
-    function TaskCategoryController($scope, Api) {
+    function TaskCategoryController($rootScope,$scope, Api) {
 
         $scope.taskcategories = [];
 
         $scope.selectedTaskCategory = null;
+        $scope.categoryClicked = categoryClicked;
 
+        function categoryClicked(category) {
+            $rootScope.$broadcast('CATEGORY_SELECTED', category);
+        }
 
 
         fetchTaskCategory = function () {
@@ -19,9 +23,6 @@
                 $scope.taskcategories = data;
             }, {})
         }
-
-
-
 
 
         fetchTaskCategory();
@@ -37,6 +38,20 @@
 
             }, function () { alert('Error Creating TaskCategory') })
         }
-    }
+    
 
+        $scope.saveEdit = function (TaskCategory, $event) {
+            var updateable = angular.copy(TaskCategory);
+
+            if ($event.keyCode === 13) {
+                Api.TaskCategory.update({ id: TaskCategory.Id }, updateable, function () {
+                    alert('Category Updated Sucessfully');
+                    fetchTaskCategory();
+                }, function () {
+                    alert('Error Editing Category');
+                    fetchTaskCategory();
+                })
+            }
+        }
+    }
 }(window, angular));

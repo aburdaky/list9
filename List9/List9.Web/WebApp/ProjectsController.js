@@ -3,14 +3,18 @@
         'List9.Core'
     ]);
 
-    module.controller("ProjectsController", ['$scope', 'Api', ProjectsController]);
+    module.controller("ProjectsController", ['$rootScope', '$scope', 'Api', ProjectsController]);
 
-    function ProjectsController($scope, Api) {
+    function ProjectsController($rootScope, $scope, Api) {
 
         $scope.projects = [];
 
         $scope.selectedProject = null;
+        $scope.projectClicked = projectClicked;
 
+        function projectClicked(project) {
+            $rootScope.$broadcast('PROJECT_SELECTED', project);
+        }
 
 
        fetchProject = function () {
@@ -34,6 +38,22 @@
 
 
             }, function () { alert('Error Creating Project') })
+        }
+
+
+        $scope.saveEdit = function (project,$event) {
+            var updateable = angular.copy(project);
+            
+            if ($event.keyCode === 13) {
+                Api.Project.update({ id: project.Id }, updateable, function () {
+                    alert('Project Updated Sucessfully');
+                    fetchProject();
+                }, function () {
+                    alert('Error Editing Project');
+                    fetchProject();
+                })
+            }
+
         }
     }
 

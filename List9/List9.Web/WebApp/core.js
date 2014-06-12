@@ -1,12 +1,10 @@
 ﻿(function (window, angular, undefined) {
     var module = angular.module('List9.Core', [
         'ngResource',
-        'ngRoute',
-        ]);
+        'ngRoute'
+    ]);
 
     module.provider('Api', apiProvider);
-
-    
 
     function apiProvider() {
         var _endpoint;
