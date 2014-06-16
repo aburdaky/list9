@@ -3,12 +3,12 @@
         'List9.Core'
     ]);
 
-    module.controller("UserController", ['$rootScope', '$scope', 'Api', UserController]);
+    module.controller("UserController", ['$rootScope', '$scope', 'Api', '$parse', UserController]);
 
     function UserController($rootScope,$scope, Api) {
 
         $scope.users = [];
-
+        $scope.deleteMode = false;
         $scope.selectedUser = null;
         $scope.userClicked = userClicked;
 
@@ -53,6 +53,24 @@
                 })
             }
 
+        }
+
+        $scope.deleteUser = deleteUser
+
+        function deleteUser(u) {
+            
+
+            if (confirm('are you Sure you want to delete user "' + u.Name + '"?')) {
+
+                Api.User.delete({ id: u.Id }, function ()  {
+                    $scope.deleteMode = false
+                    alert('user Deleted Sucessfully');
+                    fetchUser();
+                }, function () {
+                    alert('Error Deleting user');
+                    fetchUser();
+                })
+            }
         }
     }
 

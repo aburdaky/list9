@@ -3,12 +3,12 @@
         'List9.Core'
     ]);
 
-    module.controller("ProjectsController", ['$rootScope', '$scope', 'Api', ProjectsController]);
+    module.controller("ProjectsController", ['$rootScope', '$scope', 'Api', '$parse', ProjectsController]);
 
     function ProjectsController($rootScope, $scope, Api) {
 
         $scope.projects = [];
-
+        $scope.deleteMode = false;
         $scope.selectedProject = null;
         $scope.projectClicked = projectClicked;
 
@@ -54,6 +54,23 @@
                 })
             }
 
+        }
+
+
+        $scope.deleteProject = deleteProject
+
+        function deleteProject(p) {
+            if (confirm('are you Sure you want to delete project "' + p.Name + '"?')) {
+               
+                Api.Project.delete({ id:p.Id }, function () {
+                    $scope.deleteMode = false;
+                    alert('Project Deleted Sucessfully');
+                    fetchProject();
+                }, function () {
+                    alert('Error Deleting project');
+                    fetchProject();
+                })
+            }
         }
     }
 

@@ -28,10 +28,17 @@
                     </ul>
                     <div id="projects" class="group" ng-controller="ProjectsController" ng-show="(viewMode=='Projects')">
                         <div class="group-items">
-                            <div ng-repeat-start="p in projects" ng-click="projectClicked(p)" ng-dblclick="editProject=true" ng-hide="(editProject==true)">{{p.Name}} <span class="badge" ng-hide="(p.Tasks.length==0)">{{p.Tasks.length}}</span></div>
+                            <div ng-repeat-start="p in projects" ng-click="projectClicked(p)" ng-right-click="deleteMode=true" ng-dblclick="editProject=true" ng-mouseleave="deleteMode=false" ng-hide="(editProject==true)">
+                                {{p.Name}} <span class="badge" ng-hide="(p.Tasks.length==0)">{{p.Tasks.length}}</span>
+                                <span ng-show="(deleteMode==true)" >
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteProject(p)">DELETE</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteMode=false">Cancel</button>
+                                </span>
+                            </div>
+
                             <div ng-repeat-end ng-show="(editProject==true)">
                                 <input type="text" ng-model="p.Name" ng-blur="editProject = false" ng-keypress="saveEdit(p,$event)" />
-                                
+
                             </div>
                         </div>
 
@@ -46,10 +53,16 @@
                     </div>
                     <div id="users" class="group" ng-controller="UserController" ng-show="(viewMode=='Users')">
                         <div class="group-items">
-                            <div ng-repeat-start="u in users" ng-click="userClicked(u)" ng-dblclick="edituser=true" ng-hide="(edituser==true)">{{u.Name}} <span class="badge" ng-hide="(u.Tasks.length==0)">{{u.Tasks.length}}</span></div>
+                            <div ng-repeat-start="u in users" ng-click="userClicked(u)" ng-right-click="deleteMode=true" ng-mouseleave="deleteMode=false" ng-dblclick="edituser=true" ng-hide="(edituser==true)">
+                                {{u.Name}} <span class="badge" ng-hide="(u.Tasks.length==0)">{{u.Tasks.length}}</span>
+                                <span ng-show="(deleteMode==true)">
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteUser(u)">DELETE</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteMode=false">Cancel</button>
+                                </span>
+                            </div>
                             <div ng-repeat-end ng-show="(edituser==true)">
                                 <input type="text" ng-model="u.Name" ng-blur="editUser = false" ng-keypress="saveEdit(u,$event)" />
-                                
+
                             </div>
                         </div>
 
@@ -64,10 +77,16 @@
                     </div>
                     <div id="categories" class="group" ng-controller="TaskCategoryController" ng-show="(viewMode=='Categories')">
                         <div class="group-items">
-                            <div ng-repeat-start="c in taskcategories" ng-click="categoryClicked(c)" ng-dblclick="editcategory=true" ng-hide="(editcategory==true)">{{c.Name}} <span class="badge" ng-hide="(c.Tasks.length==0)">{{c.Tasks.length}}</span></div>
+                            <div ng-repeat-start="c in taskcategories" ng-click="categoryClicked(c)" ng-right-click="deleteMode=true" ng-mouseleave="deleteMode=false" ng-dblclick="editcategory=true" ng-hide="(editcategory==true)">
+                                {{c.Name}} <span class="badge" ng-hide="(c.Tasks.length==0)">{{c.Tasks.length}}</span>
+                                <span ng-show="(deleteMode==true)">
+                                    <button class="btn btn-sm btn-danger" ng-click="deletecategory(c)">DELETE</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteMode=false">Cancel</button>
+                                </span>
+                            </div>
                             <div ng-repeat-end ng-show="(editcategory==true)">
                                 <input type="text" ng-model="c.Name" ng-blur="editcategory = false" ng-keypress="saveEdit(c,$event)" />
-                                
+
                             </div>
                         </div>
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
@@ -87,17 +106,22 @@
                     <div id="tasks" ng-controller="TaskController">
                         <div id="filterHeading">{{filterHeading}}</div>
                         <div class="task" ng-repeat="t in tasks| filter:searchText">
-                            <div ng-dblclick="editTask=true" ng-show="(editTask!=true)">
+                            <div ng-dblclick="editTask=true" ng-right-click="(deleteMode=true)" ng-show="(editTask!=true)">
                                 <input id="checkbox{{t.Id}}" class="css-checkbox" type="checkbox" ng-checked="t.Done" />
                                 <label for="checkbox{{t.Id}}" name="checkboxLbl{{t.Id}}" class="css-label"></label>
-                                <span class="task-name" ngrightclick="deleteTask(t)">{{t.Name}} {{t.DateDue | date:'dd/MM'}}</span>
+                                <span class="task-name" ng-right-click="(deleteMode==true)" ng-mouseleave="deleteMode=false">{{t.Name}} {{t.DateDue | date:'dd/MM'}}</span>
+                                <span ng-show="(deleteMode==true)">
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteTask(t)">DELETE</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteMode=false">Cancel</button>
+                                </span>
                             </div>
-                                <div ng-show="(editTask==true)">
-                                    <input type="text" ng-model="t.Name" class="form-control" placeholder="{{t.Name}}" ng-blur="editTask = false" ng-keypress="saveEdit(t,$event)" />
-                                    <!--<br />
-                                    <button class="btn btn-sm btn-danger" ng-click="editTask=false">Cancel</button>-->
-                                </div>
+
+
+                            <div ng-show="(editTask==true)">
+                                <input type="text" ng-model="t.Name" class="form-control" placeholder="{{t.Name}}" ng-blur="editTask = false" ng-keypress="saveEdit(t,$event)" />
+
                             </div>
+                        </div>
                         <a class="add" ng-click="editMode=true" ng-hide="(editMode==true)">+ Add New</a>
                         <div ng-show="(editMode==true)">
                             <form class="form">

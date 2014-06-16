@@ -3,7 +3,9 @@
         'List9.Core'
     ]);
 
-    module.controller("TaskController", ['$scope', 'Api', TaskController]);
+   
+
+    module.controller("TaskController", ['$scope', 'Api', '$parse', TaskController]);
 
     function TaskController($scope, Api) {
 
@@ -15,12 +17,16 @@
         $scope.selectedTask = null;
         $scope.editTask = false;
         $scope.canceledit = canceledit;
+        $scope.deleteMode = false;
         //filters
         $scope.$on('PROJECT_SELECTED', onProjectSelected);
         $scope.$on('USER_SELECTED', onUserSelected);
         $scope.$on('CATEGORY_SELECTED', onCategorySelected);
         $scope.$on('FILTERED_BY_DATES', filterTasksByDate);
         $scope.$on('CLEAR_FILTERS',clearFilters)
+
+
+ 
 
         fetchTask = function () {
 
@@ -69,9 +75,23 @@
             }
             
         }
-        //$scope.deleteTask=deleteTask
+        $scope.deleteTask=deleteTask
 
-
+        function deleteTask(t) {
+            
+           
+            if (confirm('are you Sure you want to delete task "' + t.Name + '"?')) {
+                
+                Api.Task.delete({ id: t.Id }, function () {
+                    $scope.deleteMode=false
+                    alert('Task Deleted Sucessfully');
+                    fetchTask();
+                }, function () {
+                    alert('Error Deleting Task');
+                    fetchTask();
+                })
+            }
+        }
 
         function canceledit() { $scope.editTask = false };
 //Filters

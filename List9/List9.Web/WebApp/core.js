@@ -3,9 +3,9 @@
         'ngResource',
         'ngRoute'
     ]);
-
+    
     module.provider('Api', apiProvider);
-
+    module.directive('ngRightClick', ['$parse', rightClickDirective]);
     function apiProvider() {
         var _endpoint;
         var apiProvider = {
@@ -51,4 +51,18 @@
             return apiService;
         }
     }
+
+    function rightClickDirective($parse) {
+        return function (scope, element, attrs) {
+            var fn = $parse(attrs.ngRightClick);
+            element.bind('contextmenu', function (event) {
+                scope.$apply(function () {
+                    event.preventDefault();
+                    fn(scope, { $event: event });
+                });
+            });
+        };
+    }
+  
+    
 }(window, angular));
