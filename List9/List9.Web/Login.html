@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>List9 Login</title>
+    <script src="includes/bundles/jQuery/jquery-1.9.0.js"></script>
+    <link href="includes/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <form id="form1" ng-controller="MasterController">
+        <div>
+            <input type="text" id="username" /><br />
+            <input type="text" id="password" /><br />
+            <input type="button" value="Login" onclick="onLoginSubmit()" />
+        </div>
+    </form>
+    <script>
+        function onLoginSubmit() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            credentials = {
+                username: username,
+                password: password,
+                grant_type: 'password'
+            };
+
+            $.ajax({
+                method: 'POST',
+                url: 'http://list9.testpad.e9server.com/Token',
+                //url: 'http://localhost:56367/Token',
+                crossDomain: true,
+                data: credentials,
+                success: function (token) {
+             
+                    console.log(token);
+                    localStorage.setItem("ACCESS_TOKEN", token.access_token);
+                    window.location = "index.html";
+                }
+            });
+        }
+
+    </script>
+    
+
+</body>
+</html>

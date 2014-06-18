@@ -5,20 +5,23 @@
 
    
 
-    module.controller("TaskController", ['$scope', 'Api', '$parse', TaskController]);
+    module.controller("TaskController", ['$scope','Api', '$user',  TaskController]);
 
-    function TaskController($scope, Api) {
+    function TaskController($scope, Api, $user) {
 
         $scope.tasks = [];
         $scope.projects = [];
-        $scope.users = [];
+        
         $scope.taskcategories = [];
         $scope.filterHeading = 'All';
         $scope.selectedTask = null;
         $scope.editTask = false;
         $scope.canceledit = canceledit;
         $scope.deleteMode = false;
+       // $scope.addUsersToProject = addUsersToProject
         //filters
+        $scope.user = [];
+        $scope.user = $user;
         $scope.$on('PROJECT_SELECTED', onProjectSelected);
         $scope.$on('USER_SELECTED', onUserSelected);
         $scope.$on('CATEGORY_SELECTED', onCategorySelected);
@@ -26,30 +29,31 @@
         $scope.$on('CLEAR_FILTERS',clearFilters)
 
 
- 
+        
 
         fetchTask = function () {
-
-            Api.Task.query({$expand:'Projects,Users,TaskCategories'}, function (data) {
-                $scope.tasks = data;
+            Api.Account.current({}, function (data) {
+                $scope.projects = data.Projects;
+               
+                $scope.tasks = data.Projects.reduce(function (tasks, project) { return tasks.concat(project.Tasks); }, []);
+               
             }, {})
         }
-
-        Api.Project.query({}, function (data) {
-            $scope.projects = data;
-        }, {})
-
-        Api.User.query({}, function (data) {
-            $scope.users = data;
-        }, {})
+       
+       
 
         Api.TaskCategory.query({}, function (data) {
             $scope.taskcategories = data;
         }, {})
 
         fetchTask();
-
+        console.log($scope.tasks, $scope.projects);
         $scope.save = function () {
+          
+            $scope.selectedTask.List9UserId = $user.Id;
+           
+            $scope.selectedTask.Done = false;
+
             Api.Task.save($scope.selectedTask, function () {
                 $scope.editMode = false;
                 $scope.selectedTask = null;
@@ -61,7 +65,7 @@
         $scope.saveEdit = function (task,$event) {
             var updateable = angular.copy(task);
             delete updateable.Projects;
-            delete updateable.Users;
+            delete updateable.List9Users;
             delete updateable.TaskCategories;
            
             if ($event.keyCode === 13) {
@@ -98,30 +102,41 @@
         function onProjectSelected(event, project) {
             $scope.filterHeading = project.Name;
 
-            Api.Task.query({ $expand: 'Projects,Users,TaskCategories', $filter: 'ProjectId eq ' + project.Id }, function (data) {
+            Api.Task.query({ $expand: 'Projects,TaskCategories', $filter: 'ProjectId eq ' + project.Id }, function (data) {
                 $scope.tasks = data;
             }, {})
         }
         function onUserSelected(event, user) {
             $scope.filterHeading = user.Name;
 
-            Api.Task.query({ $expand: 'Projects,Users,TaskCategories', $filter: 'UserId eq ' + user.Id }, function (data) {
+            Api.Task.query({ $expand: 'Projects,TaskCategories', $filter: 'List9UserId eq ' + user.Id }, function (data) {
                 $scope.tasks = data;
             }, {})
         }
         function onCategorySelected(event, category) {
             $scope.filterHeading = category.Name;
 
-            Api.Task.query({ $expand: 'Projects,Users,TaskCategories', $filter: 'TaskCategoryId eq ' + category.Id }, function (data) {
+            Api.Task.query({ $expand: 'Projects,TaskCategories', $filter: 'TaskCategoryId eq ' + category.Id }, function (data) {
                 $scope.tasks = data;
             }, {})
         }
+
+        //function addUsersToProject(u,t,$event) {
+        //    if ($event.keyCode === 13) {
+        //        Api.
+
+        //        { addusermode = false; }
+        //    }
+
+
+        //}
+
         function filterTasksByDate(event, selectedDates) {
 
 
             $scope.filterHeading= 'Date Range: '+new moment(selectedDates.StartDate).format('L')+' to '+new moment(selectedDates.EndDate).format('L')
 
-            Api.Task.query({ $expand: 'Projects,Users,TaskCategories', $filter: 'DateDue gt datetime\'' + selectedDates.StartDate + '\' and DateDue lt datetime\'' + selectedDates.EndDate+'\'' }, function (data) {
+            Api.Task.query({ $expand: 'Projects,TaskCategories', $filter: 'DateDue gt datetime\'' + selectedDates.StartDate + '\' and DateDue lt datetime\'' + selectedDates.EndDate+'\'' }, function (data) {
                 $scope.tasks = data;
             }, {})
         }

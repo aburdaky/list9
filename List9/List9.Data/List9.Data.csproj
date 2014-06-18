@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -67,6 +73,22 @@
     <Compile Include="Migrations\201406111833025_icllectionfix.Designer.cs">
       <DependentUpon>201406111833025_icllectionfix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406161043474_add_identity.cs" />
+    <Compile Include="Migrations\201406161043474_add_identity.Designer.cs">
+      <DependentUpon>201406161043474_add_identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406171754346_UserRemoved.cs" />
+    <Compile Include="Migrations\201406171754346_UserRemoved.Designer.cs">
+      <DependentUpon>201406171754346_UserRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406181111193_List9Users.cs" />
+    <Compile Include="Migrations\201406181111193_List9Users.Designer.cs">
+      <DependentUpon>201406181111193_List9Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406181803156_manytomany.cs" />
+    <Compile Include="Migrations\201406181803156_manytomany.Designer.cs">
+      <DependentUpon>201406181803156_manytomany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Repository.cs" />
@@ -90,6 +112,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406111833025_icllectionfix.resx">
       <DependentUpon>201406111833025_icllectionfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406161043474_add_identity.resx">
+      <DependentUpon>201406161043474_add_identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406171754346_UserRemoved.resx">
+      <DependentUpon>201406171754346_UserRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406181111193_List9Users.resx">
+      <DependentUpon>201406181111193_List9Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406181803156_manytomany.resx">
+      <DependentUpon>201406181803156_manytomany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

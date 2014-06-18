@@ -17,7 +17,7 @@ namespace Data.Interfaces
         IRepository<Project> Projects { get; }
         IRepository<Model.Models.Task> Tasks { get; }
         IRepository<TaskCategory> TaskCategories { get;}
-        IRepository<User> Users { get; }
+        //IRepository<User> Users { get; }
 
         IRepository<TEntity> GetRepositoryForType<TEntity>() where TEntity : class;
 

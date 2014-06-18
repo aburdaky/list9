@@ -1,4 +1,8 @@
-﻿using Data.Interfaces;
+﻿using List9.Data;
+using Data.Interfaces;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Model.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,9 +16,9 @@ namespace Data
     {
         public DbContext Context { get; set; }
         protected IRepositoryFactories factories { get; private set; }
-        
+        protected Func<UserManager<List9User>> userManagerFactory = () => new UserManager<List9User>(new UserStore<List9User>(new List9Context()));
         protected Dictionary<Type, object> Repositories { get; private set; }
-
+        protected UserManager<List9User> UserManager { get; private set; }
 
         public RepositoryProvider(IRepositoryFactories repositoryFactories)
         {
@@ -55,6 +59,11 @@ namespace Data
         public void SetRepository<TEntity>(TEntity repository)
         {
             Repositories[typeof(TEntity)] = repository;
+        }
+
+        public UserManager<List9User> GetUserManager()
+        {
+            return UserManager ?? userManagerFactory();
         }
     }
 }

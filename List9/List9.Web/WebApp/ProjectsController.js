@@ -6,7 +6,7 @@
     module.controller("ProjectsController", ['$rootScope', '$scope', 'Api', '$parse', ProjectsController]);
 
     function ProjectsController($rootScope, $scope, Api) {
-
+        $scope.startDelete=startDelete
         $scope.projects = [];
         $scope.deleteMode = false;
         $scope.selectedProject = null;
@@ -54,6 +54,13 @@
                 })
             }
 
+        }
+
+        function startDelete(p) {
+            
+            p.$deleting = true;
+
+            $('#projectdelete' + p.Id).focus();
         }
 
 

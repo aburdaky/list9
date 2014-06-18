@@ -481,6 +481,12 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:List9.Api.Controllers.AccountController.GetCurrentUser">
+            <summary>
+            Api endpoint for getting the current user.
+            </summary>
+            <returns>List9User: the current user</returns>
+        </member>
         <member name="M:List9.Api.Controllers.BaseController`1.GetAll">
             <summary>
             Api endpoint for entity queries.

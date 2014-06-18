@@ -38,43 +38,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="includes\bundles\moment\moment.min.js" />
+    <Content Include="includes\bundles\moment\moment.timezone.data.js" />
+    <Content Include="includes\bundles\moment\moment.timezone.min.js" />
     <Content Include="includes\css\style.css" />
     <Content Include="includes\css\style.min.css">
       <DependentUpon>style.css</DependentUpon>
     </Content>
+    <Content Include="includes\images\background-white.jpg" />
+    <Content Include="includes\images\background.jpg" />
+    <Content Include="includes\images\e9ine-logo.png" />
     <Content Include="index.html" />
+    <Content Include="Login.html" />
+    <Content Include="Login.js" />
     <Content Include="WebApp\app.js" />
+    <Content Include="WebApp\List9UserController.js" />
     <Content Include="WebApp\TaksController.js" />
     <Content Include="WebApp\TaskCategoryContoller.js" />
     <Content Include="WebApp\core.js" />
     <Content Include="WebApp\MasterController.js" />
-    <Content Include="packages.config" />
     <Content Include="WebApp\UserController.js" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+    <Content Include="config.codekit" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="includes\bundles\angular-ui\ui-bootstrap-tpls.js" />
@@ -96,10 +85,11 @@
     <Content Include="includes\bundles\bootstrap\bootstrap-theme.min.css" />
     <Content Include="includes\bundles\bootstrap\bootstrap.css" />
     <Content Include="includes\bundles\bootstrap\bootstrap.min.css" />
+    <Content Include="includes\.DS_Store" />
     <None Include="includes\bundles\jQuery\jquery-1.9.0.intellisense.js" />
     <Content Include="includes\bundles\jQuery\jquery-1.9.0.js" />
     <Content Include="includes\bundles\jQuery\jquery-1.9.0.min.js" />
-    <Content Include="includes\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="includes\bundles\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="includes\bundles\angular\angular-animate.min.js.map" />
     <Content Include="includes\bundles\angular\angular-loader.min.js.map" />
     <Content Include="includes\bundles\angular\angular-resource.min.js.map" />
@@ -108,29 +98,26 @@
     <Content Include="includes\bundles\bootstrap\bootstrap-theme.css.map" />
     <Content Include="includes\bundles\bootstrap\bootstrap.css.map" />
     <Content Include="includes\bundles\jQuery\jquery-1.9.0.min.map" />
-    <Content Include="includes\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="includes\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="includes\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="includes\bundles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="includes\bundles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="includes\bundles\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="WebApp\ProjectsController.js" />
-    <Content Include="Web.config" />
+    <Content Include="includes\bundles\fonts\Anke.ttf" />
+    <Content Include="includes\bundles\fonts\.DS_Store" />
+    <Content Include="includes\less\common.less" />
+    <Content Include="includes\less\mixins.less" />
+    <Content Include="includes\less\style.less" />
+    <Content Include="includes\less\variables.less" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\List9.Api\List9.Api.csproj">
-      <Project>{eadca557-2034-4bc4-aea7-8eee992ef159}</Project>
-      <Name>List9.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\List9.Data\List9.Data.csproj">
-      <Project>{82458d56-08b9-4ecd-b47c-23c40c3e6c74}</Project>
-      <Name>List9.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\List9.Model\List9.Model.csproj">
-      <Project>{cc893abb-4318-4cd6-ad50-a540bbb2e00a}</Project>
-      <Name>List9.Model</Name>
-    </ProjectReference>
+    <Folder Include="Api\" />
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

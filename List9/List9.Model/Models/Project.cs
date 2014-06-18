@@ -1,4 +1,5 @@
 ﻿using Model.Interfaces;
+using Model.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,10 +33,11 @@ namespace Model.Models
         public DateTime? LastEditDate { get; set; }
         public string LastEditedBy { get; set; }
 
+        public ICollection<List9User> List9Users { get; set; }
         public ICollection<Task> Tasks { get; set; }
-
+       
         public Project() {
-
+            
             Tasks = new List<Task>();
         }
     }

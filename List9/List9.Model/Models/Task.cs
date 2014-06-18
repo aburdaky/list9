@@ -1,4 +1,5 @@
 ﻿using Model.Interfaces;
+using Model.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,8 +28,8 @@ namespace Model.Models
         /// <summary>
         /// Foregin Key to find the User assigned to a task
         /// </summary>
-        public int? UserId { get; set; }
-        public virtual User Users { get; set; }
+       
+        public  string List9UserID { get; set; }
 
         /// <summary>
         /// Foregin Key to find the Project assigned to a task
@@ -57,5 +58,6 @@ namespace Model.Models
         public string LastEditedBy { get; set; }
         
 
+       
     }
 }

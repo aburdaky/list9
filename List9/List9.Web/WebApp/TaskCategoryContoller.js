@@ -11,6 +11,8 @@
         $scope.deleteMode = false;
         $scope.selectedTaskCategory = null;
         $scope.categoryClicked = categoryClicked;
+        $scope.startDelete = startDelete;
+       
 
         function categoryClicked(category) {
             $rootScope.$broadcast('CATEGORY_SELECTED', category);
@@ -54,6 +56,14 @@
             }
         }
 
+
+
+        function startDelete(c) {
+
+            c.$deleting = true;
+
+            $('#projectdelete' + c.Id).focus();
+        }
 
         $scope.deletecategory = deletecategory
 

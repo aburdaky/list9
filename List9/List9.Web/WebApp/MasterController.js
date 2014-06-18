@@ -1,16 +1,22 @@
 ﻿(function (window, angular, undefined) {
     var module = angular.module('List9');
 
-    module.controller('MasterController', ['$rootScope', '$scope', 'Api', masterController]);
+    module.controller('MasterController', ['$rootScope', '$scope', '$http','$user', 'Api', masterController]);
 
-    function masterController($rootScope, $scope, Api) {
+    function masterController($rootScope, $scope, $http,$user ,Api) {
+
+
+        $scope.currentuser = {};
+        $scope.currentuser = $user;
         $scope.viewMode = 'Projects';
-        $scope.clearfilters=clearfilters
+        $scope.clearfilters = clearfilters
         $scope.filterTasksByDate = filterTasksByDate;
         $scope.filterDates = {};
+        $scope.logOut=logOut
+
         function filterTasksByDate(filterstring) {
 
-            
+
 
             if (filterstring == 'Today') {
                 $scope.filterDates.StartDate = new moment().startOf('day').format()
@@ -34,15 +40,24 @@
         }
 
         function clearfilters(all) {
-            
-
-                $rootScope.$broadcast('CLEAR_FILTERS')
-
-            }
 
 
+            $rootScope.$broadcast('CLEAR_FILTERS')
+
+        }
+
+        function logOut() {
+
+            return window.sessionStorage.removeItem('ACCESS_TOKEN');
+            window.location = '/login.html';
+           
+
+        }
+
+        
     }
-
+    
+       
 
 
 }(window, angular));

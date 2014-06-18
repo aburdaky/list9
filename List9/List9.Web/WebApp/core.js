@@ -3,7 +3,41 @@
         'ngResource',
         'ngRoute'
     ]);
-    
+    module.constant('StoredAccessToken', {
+        get: function () {
+            return window.sessionStorage.getItem('ACCESS_TOKEN') || window.localStorage.getItem('ACCESS_TOKEN');
+        },
+        put: function (token) {
+            return window.sessionStorage.setItem('ACCESS_TOKEN', token);
+        },
+        clear: function () {
+            return window.sessionStorage.removeItem('ACCESS_TOKEN');
+        },
+    });
+
+
+    module.service('RequestInterceptor', ['$rootScope', '$q', '$window', 'StoredAccessToken', requestInterceptor]);
+
+    function requestInterceptor($rootScope, $q, $window, StoredAccessToken) {
+        return {
+            request: function (config) {
+                config.headers = config.headers || {};
+                var token = StoredAccessToken.get();
+                if (token) {
+                    config.headers.Authorization = "Bearer " + token;
+                }
+                return config || $q.when(config);
+            },
+            responseError: function (response) {
+                if (response.status === 401) {
+                    window.location = "/login.html";
+                    return;
+                }
+                return response || $q.reject(response);
+            }
+        }
+    }
+
     module.provider('Api', apiProvider);
     module.directive('ngRightClick', ['$parse', rightClickDirective]);
     function apiProvider() {
@@ -40,12 +74,21 @@
             var taskCategory = $resource(_endpoint + '/taskcategory/:id', {}, {
                 update: _standardUpdateProcedure
             });
+            var account = $resource(_endpoint + '/account/:id', {}, {
+                update: _standardUpdateProcedure,
+                current: {
+                    url: _endpoint + '/account/CurrentUser',
+                    isArray: false,
+                    method: 'GET'
+                }
+            });
 
             var apiService = {
                 Project: project,
                 User: user,
                 Task: task,
-                TaskCategory: taskCategory
+                TaskCategory: taskCategory,
+                Account: account
             }
 
             return apiService;

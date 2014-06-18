@@ -87,7 +87,7 @@ namespace Data
         public IRepository<Model.Models.Task> Tasks { get { return provider.GetRepositoryForType<Model.Models.Task>(); } }
 
         public IRepository<TaskCategory> TaskCategories { get { return provider.GetRepositoryForType<TaskCategory>(); } }
-        public IRepository<User> Users { get { return provider.GetRepositoryForType<User>(); } }
+        //public IRepository<User> Users { get { return provider.GetRepositoryForType<User>(); } }
 
         
 

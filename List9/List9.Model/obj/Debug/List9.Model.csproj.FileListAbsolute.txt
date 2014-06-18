@@ -6,3 +6,15 @@ D:\VSProjects\List9\List9\List9.Model\bin\Debug\EntityFramework.SqlServer.xml
 D:\VSProjects\List9\List9\List9.Model\obj\Debug\List9.Model.csprojResolveAssemblyReference.cache
 D:\VSProjects\List9\List9\List9.Model\obj\Debug\Model.dll
 D:\VSProjects\List9\List9\List9.Model\obj\Debug\Model.pdb
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Model.dll.config
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Model.dll
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Model.pdb
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\EntityFramework.xml
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\obj\Debug\List9.Model.csprojResolveAssemblyReference.cache
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\obj\Debug\Model.dll
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\obj\Debug\Model.pdb
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

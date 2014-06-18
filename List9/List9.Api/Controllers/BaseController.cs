@@ -8,6 +8,7 @@ using Data;
 using Data.Interfaces;
 using System.Data.Entity.Infrastructure;
 using Model.Interfaces;
+using List9.Api.Filters;
 
 namespace List9.Api.Controllers
 {
@@ -65,7 +66,7 @@ namespace List9.Api.Controllers
         /// <param name="id">Id value of entity to be updated.</param>
         /// <param name="entity">Serialized representation of updated object.</param>
         /// <returns>Updated version of entity.</returns>
-       
+        [ValidateModel]
         public virtual IHttpActionResult Put(int id, TEntity entity)
         {
             if (id != entity.Id)
@@ -100,9 +101,9 @@ namespace List9.Api.Controllers
         /// </summary>
         /// <param name="entity">Serialized representation of created object.</param>
         /// <returns>Created version of entity.</returns>
-        
+        [ValidateModel]
         public virtual IHttpActionResult Post(TEntity entity)
-        {
+        { 
             Repo.Add(entity);
             Uow.Commit(User.Identity.Name);
 

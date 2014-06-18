@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Data;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Model.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +22,18 @@ namespace List9.Api
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            UserManager<List9User> manager = new UserManager<List9User>(new UserStore<List9User>(new List9Context()));
+
+            List9User user = new List9User();
+
+            user.UserName = "dbeech";
+            user.PhoneNumber = "070000000000";
+            user.Email = "david@e9ine.com";
+            user.Name = "David Beech";
+
+            manager.Create(user, "Password");
+
         }
     }
 }
