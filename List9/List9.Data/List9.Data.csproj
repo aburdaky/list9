@@ -85,9 +85,17 @@
     <Compile Include="Migrations\201406181111193_List9Users.Designer.cs">
       <DependentUpon>201406181111193_List9Users.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406181803156_manytomany.cs" />
-    <Compile Include="Migrations\201406181803156_manytomany.Designer.cs">
-      <DependentUpon>201406181803156_manytomany.cs</DependentUpon>
+    <Compile Include="Migrations\201406191240104_tweaks.cs" />
+    <Compile Include="Migrations\201406191240104_tweaks.Designer.cs">
+      <DependentUpon>201406191240104_tweaks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406191241167_update.cs" />
+    <Compile Include="Migrations\201406191241167_update.Designer.cs">
+      <DependentUpon>201406191241167_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406191253272_taskcattweak.cs" />
+    <Compile Include="Migrations\201406191253272_taskcattweak.Designer.cs">
+      <DependentUpon>201406191253272_taskcattweak.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,8 +130,14 @@
     <EmbeddedResource Include="Migrations\201406181111193_List9Users.resx">
       <DependentUpon>201406181111193_List9Users.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406181803156_manytomany.resx">
-      <DependentUpon>201406181803156_manytomany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406191240104_tweaks.resx">
+      <DependentUpon>201406191240104_tweaks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406191241167_update.resx">
+      <DependentUpon>201406191241167_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406191253272_taskcattweak.resx">
+      <DependentUpon>201406191253272_taskcattweak.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -5,14 +5,15 @@
 
     function masterController($rootScope, $scope, $http,$user ,Api) {
 
-
+        $scope.selectedUser={}
         $scope.currentuser = {};
         $scope.currentuser = $user;
         $scope.viewMode = 'Projects';
         $scope.clearfilters = clearfilters
         $scope.filterTasksByDate = filterTasksByDate;
         $scope.filterDates = {};
-        $scope.logOut=logOut
+        $scope.logOut = logOut;
+        $scope.addNewUser = addNewUser;
 
         function filterTasksByDate(filterstring) {
 
@@ -47,10 +48,24 @@
         }
 
         function logOut() {
-
-            return window.sessionStorage.removeItem('ACCESS_TOKEN');
+          
+            window.localStorage.removeItem('ACCESS_TOKEN');
+            
             window.location = '/login.html';
            
+
+        }
+
+        function addNewUser() {
+       
+            $scope.selectedUser.Repeat = $scope.selectedUser.Password
+            debugger;
+            Api.Account.PostNewUser($scope.selectedUser, function () {
+                alert("User Added Sucessfully");
+                $scope.createUserMode=false;
+                $scope.selectedUser = null;
+            
+            },function(){alert("Add New User Failed")});
 
         }
 

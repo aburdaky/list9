@@ -15,16 +15,13 @@
         function projectClicked(project) {
             $rootScope.$broadcast('PROJECT_SELECTED', project);
         }
+        
+        fetchProject = function () {
 
-
-       fetchProject = function () {
-
-            Api.Project.query({$expand:'Tasks'}, function (data) {
-                $scope.projects = data;
-            }, {})
-        }
-
-
+            Api.Account.current({}, function (data) {
+                $scope.projects = data.Projects;
+            })
+            };
 
         fetchProject();
 
@@ -39,8 +36,7 @@
 
             }, function () { alert('Error Creating Project') })
         }
-
-
+        
         $scope.saveEdit = function (project,$event) {
             var updateable = angular.copy(project);
             
@@ -62,8 +58,7 @@
 
             $('#projectdelete' + p.Id).focus();
         }
-
-
+        
         $scope.deleteProject = deleteProject
 
         function deleteProject(p) {

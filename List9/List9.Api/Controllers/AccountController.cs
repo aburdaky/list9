@@ -172,7 +172,8 @@ namespace List9.Api.Controllers
         public IHttpActionResult GetCurrentUser()
         {
             var userId = User.Identity.GetUserId();
-            var result = Uow.Context.Set<List9User>().Include("Projects.Tasks").Single(u => u.Id == userId);
+            
+            var result = Uow.Context.Set<List9User>().Include("Projects.Tasks.TaskCategories").Single(u => u.Id == userId);
 
             return Ok(result);
         }

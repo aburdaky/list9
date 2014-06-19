@@ -7,12 +7,15 @@
 
     function TaskCategoryController($rootScope,$scope, Api) {
 
-        $scope.taskcategories = [];
+        
         $scope.deleteMode = false;
         $scope.selectedTaskCategory = null;
         $scope.categoryClicked = categoryClicked;
         $scope.startDelete = startDelete;
-       
+        $scope.projects = []
+        $scope.tasks = []
+        $scope.alltaskcategories = [];
+        $scope.taskcategories = [];
 
         function categoryClicked(category) {
             $rootScope.$broadcast('CATEGORY_SELECTED', category);
@@ -21,12 +24,18 @@
 
         fetchTaskCategory = function () {
 
-            Api.TaskCategory.query({ $expand: 'Tasks' }, function (data) {
-                $scope.taskcategories = data;
-            }, {})
-        }
+               Api.Account.current({}, function (data) {
+                $scope.projects = data.Projects;
+                $scope.tasks = data.Projects.reduce(function (tasks, project) { return tasks.concat(project.Tasks); }, []);
+                $scope.alltaskcategories = $scope.tasks.reduce(function (taskcategories, task) { return taskcategories.concat(tasks.TaskCategory); }, [])
+            });
+                                  $.each($scope.alltaskcategories, function (i, el) {
+                if ($.inArray(el, $scope.alltaskcategories) === -1) $scope.alltaskcategories.push(el);
+            });
+           
+            }
 
-
+        
         fetchTaskCategory();
 
         $scope.save = function () {
@@ -41,7 +50,6 @@
             }, function () { alert('Error Creating TaskCategory') })
         }
     
-
         $scope.saveEdit = function (TaskCategory, $event) {
             var updateable = angular.copy(TaskCategory);
 
@@ -55,9 +63,7 @@
                 })
             }
         }
-
-
-
+        
         function startDelete(c) {
 
             c.$deleting = true;

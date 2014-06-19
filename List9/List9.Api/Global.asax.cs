@@ -23,16 +23,16 @@ namespace List9.Api
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            UserManager<List9User> manager = new UserManager<List9User>(new UserStore<List9User>(new List9Context()));
+            //UserManager<List9User> manager = new UserManager<List9User>(new UserStore<List9User>(new List9Context()));
 
-            List9User user = new List9User();
+            //List9User user = new List9User();
 
-            user.UserName = "dbeech";
-            user.PhoneNumber = "070000000000";
-            user.Email = "david@e9ine.com";
-            user.Name = "David Beech";
+            //user.UserName = "dbeech";
+           // user.PhoneNumber = "070000000000";
+            //user.Email = "david@e9ine.com";
+           // user.Name = "David Beech";
 
-            manager.Create(user, "Password");
+           // manager.Create(user, "Password");
 
         }
     }

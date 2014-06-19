@@ -47,7 +47,7 @@
         }, {})
 
         fetchTask();
-        console.log($scope.tasks, $scope.projects);
+        
         $scope.save = function () {
           
             $scope.selectedTask.List9UserId = $user.Id;

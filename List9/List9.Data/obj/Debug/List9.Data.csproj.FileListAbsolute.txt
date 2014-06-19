@@ -39,4 +39,6 @@ C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\bin\Debug\Micros
 C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.add_Identity.resources
 C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.UserRemoved.resources
 C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.List9Users.resources
-C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.manytomany.resources
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.tweaks.resources
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.update.resources
+C:\Users\anthonyburdaky\Documents\GitHub\list9\List9\List9.Data\obj\Debug\Data.Migrations.taskcattweak.resources

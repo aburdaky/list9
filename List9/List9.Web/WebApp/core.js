@@ -80,6 +80,11 @@
                     url: _endpoint + '/account/CurrentUser',
                     isArray: false,
                     method: 'GET'
+                },
+                PostNewUser: {
+                    url: _endpoint + '/account/PostNewUser',
+                    isArray: false,
+                    method: 'POST'
                 }
             });
 

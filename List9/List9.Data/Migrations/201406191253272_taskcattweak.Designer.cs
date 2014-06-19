@@ -7,13 +7,13 @@ namespace Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class manytomany : IMigrationMetadata
+    public sealed partial class taskcattweak : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(manytomany));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(taskcattweak));
         
         string IMigrationMetadata.Id
         {
-            get { return "201406181803156_manytomany"; }
+            get { return "201406191253272_taskcattweak"; }
         }
         
         string IMigrationMetadata.Source
